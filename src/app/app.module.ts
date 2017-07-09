@@ -1,16 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { BreezeBridgeAngularModule  } from 'breeze-bridge-angular';
+import { NamingConvention } from 'breeze-client';
+
 import { AppComponent } from './app.component';
+import { CustomersListComponent } from '../app/customers/customers-list.component';
+
+import { ZzaRepositoryService } from '../app/shared/zzarepository.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CustomersListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BreezeBridgeAngularModule
   ],
-  providers: [],
+  providers: [ZzaRepositoryService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    NamingConvention.camelCase.setAsDefault();
+  }
+}
